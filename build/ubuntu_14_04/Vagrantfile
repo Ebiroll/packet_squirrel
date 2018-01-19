@@ -1,0 +1,35 @@
+###########################################################
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  #config.vm.network "private_network", ip: "192.168.33.10"
+
+  config.vm.synced_folder ".", "/vagrant_data"
+
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    
+    vb.gui = true
+ 
+    # Customize the amount of memory on the VM (in MB):
+    vb.memory = "6144"
+
+    # Customzie the amount of cpu cores visible to the VM:
+    vb.cpus = 4
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+
+    sudo apt-get install -y git-core build-essential libssl-dev libncurses5-dev unzip subversion mercurial gettext gawk wget emacs24-nox
+
+    echo -e "\\n\\nopenwrt setup complete. now type:\\n  vagrant ssh\\n  cd openwrt.git\\n  make menuconfig\\n  make -j$(nproc) V=99\\n\\nafter compila
+tion has finished, copy the result to the host machine:\\n  cp bin/*/*.{bin,img} /vagrant_data/build\\n  cp .config /vagrant_data/build/config"
+
+  SHELL
+  #config.vm.box_url = "http://files.vagrantup.com/ubuntu/boxes/trusty64"
+end

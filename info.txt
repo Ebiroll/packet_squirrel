@@ -1,0 +1,56 @@
+
+
+root@squirrel:~# cat /proc/mtd 
+dev:    size   erasesize  name
+mtd0: 00020000 00010000 "u-boot"
+mtd1: 0011a090 00010000 "kernel"
+mtd2: 00eb5f70 00010000 "rootfs"
+mtd3: 001b0000 00010000 "rootfs_data"
+mtd4: 00010000 00010000 "art"
+mtd5: 00fd0000 00010000 "firmware"
+
+
+cat /proc/mounts 
+rootfs / rootfs rw 0 0
+/dev/root /rom squashfs ro,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,noatime 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,noatime 0 0
+tmpfs /tmp tmpfs rw,nosuid,nodev,noatime 0 0
+/dev/mtdblock3 /overlay jffs2 rw,noatime 0 0
+overlayfs:/overlay / overlay rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work 0 0
+tmpfs /dev tmpfs rw,nosuid,relatime,size=512k,mode=755 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,mode=600 0 0
+debugfs /sys/kernel/debug debugfs rw,noatime 0 0
+
+
+root@squirrel:~# cat /proc/cmdline 
+ board=HAK5-SQUIRREL  console=ttyATH0,115200 rootfstype=squashfs,jffs2 noinitrd
+
+Linux squirrel 3.18.45 #16 Mon Nov 20 01:57:52 UTC 2017 mips GNU/Linux
+
+  0.000000] Linux version 3.18.45 (@0b67c6061174) (gcc version 4.8.3 (OpenWrt/Linaro GCC 4.8-2014.04 r49389) ) #16 Mon Nov 20 01:57:52 UTC 2017
+
+OpenWrt/Linaro GCC 4.8-2014.04 r49389
+
+Linux version 3.18.45 (sebkinne@buildbot) 
+
+   0.000000] CPU0 revision is: 00019374 (MIPS 24Kc)
+[    0.000000] SoC: Atheros AR9330 rev 1
+
+
+   0.720000] Creating 5 MTD partitions on "spi0.0":
+[    0.720000] 0x000000000000-0x000000020000 : "u-boot"
+[    0.730000] 0x000000020000-0x00000013aa14 : "kernel"
+[    0.730000] 0x00000013aa14-0x000000ff0000 : "rootfs"
+[    0.740000] mtd: device 2 (rootfs) set to be root filesystem
+[    0.740000] 1 squashfs-split partitions found on MTD device rootfs
+[    0.750000] 0x000000e50000-0x000000ff0000 : "rootfs_data"
+[    0.760000] 0x000000ff0000-0x000001000000 : "art"
+[    0.760000] 0x000000020000-0x000000ff0000 : "firmware"
+
+
+/rom/note
+SQUASHFS USERS:
+After firstboot has been run, / will be jffs2 and /rom will be squashfs
+(* except when in failsafe)
+

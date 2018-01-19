@@ -25,6 +25,7 @@ Thunar was able to explore this file without a problem. Symbolic inks are howeve
 
 # Dumping the filesystem
 '''
+On your host system make a dump of the
 ssh root@172.16.32.1 "dd if=/dev/mtdblock2 " | dd of=block2.7z
 After this you have a file that can later be recreated.
 
@@ -37,9 +38,16 @@ Create an image that can be used in qemu,
 >mkfs.ext4 -F openwrt-malta-be-root.ext4
 
 >losetup /dev/loop0 openwrt-malta-be-root.ext4
-
 >mkdir /mnt/tmp
 >mount  openwrt-malta-be-root.ext4  /mnt/tmp 
+ 
+Extract all the files from the upgrade-1.2.bin.7z to your /mnt/tmp
+If you do this fro thunar links are lost, there is probably a better way to do this.
+
+> mkdir /tmp/block2
+>sudo mount -t squashfs  block2.7z /tmp/block2
+> cp -av /tmp/block2/. /mnt/tmp
+
 
 '''
 
@@ -66,11 +74,33 @@ sudo apt-get qemu-system
 
 # Start qemu
 qemu-system-mips -M malta -kernel openwrt-malta-be-vmlinux-initramfs.elf -hda openwrt-malta-le-root.ext4 -append "-root=hda console=ttyS0" -nographic
+'''
+BusyBox v1.23.2 (2018-01-18 12:24:13 UTC) built-in shell (ash)
+
+  _______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ CHAOS CALMER (Chaos Calmer, r49610)
+ -----------------------------------------------------
+  * 1 1/2 oz Gin            Shake with a glassful
+  * 1/4 oz Triple Sec       of broken ice and pour
+  * 3/4 oz Lime Juice       unstrained into a goblet.
+  * 1 1/2 oz Orange Juice
+  * 1 tsp. Grenadine Syrup
+ -----------------------------------------------------
+'''
 
 After booting to openWrt
 
 >mkdir /mnt/ps
-mount /dev/hda /mnt/ps
+>mount /dev/hda /mnt/ps
+When finished
+>halt
+
+mount  /dev/sda /mnt/ps
 
 # Original openwrt configuration
 You also can use this one to build qemu openwrt image

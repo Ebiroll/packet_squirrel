@@ -192,6 +192,7 @@ Now you should have an environment that matches the squirrel better
 
 
 # Install packages
+```
 cd tt
  opkg install libbfd_2.24-3_ar71xx.ipk 
  opkg install libopcodes_2.24-3_ar71xx.ipk

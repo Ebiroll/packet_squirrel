@@ -104,19 +104,23 @@ https://github.com/openwrt-stuff/firmware-mod-kit
 # build your own openwrt kernel, with vagrant
 or use the elf file in the qemu directory.
 cd build
-cd
+
+```
 >vagrant up
 >vagrant ssh
 >git clone https://github.com/hak5/wifipineapple-openwrt
 >cd wifipineapple-openwrt
 >make menuconfig
 >cp /vagrant_data/.config .
+```
 
-The config file contains BE MIPS/Mach support to run in qemu
+The .config file contains BE MIPS/Mach support to run in qemu
 
 When finnished you should  have a bin/malta directory,
 to transfer them to host do
+```
 > cp bin/malta/openwrt-malta-be-vmlinux-initramfs.elf /vagrant_data
+```
 
 # Original openwrt sources
 You also can maybe use this one to build qemu openwrt image,
@@ -124,7 +128,7 @@ You also can maybe use this one to build qemu openwrt image,
 
 
 Dont run qemu in vagrant, it will result in illegal instruction.
-Try to get a newer version of qemu 
+Try to get a newer version of qemu and run on host
 sudo apt-get qemu-system
 
 # Or use precompiled kernel in directory qemu

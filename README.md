@@ -32,6 +32,19 @@ qemu-system-mips -kernel  -kernel openwrt-malta-be-vmlinux.elf -M malta \
                      -nographic
 
 
+
+```
+BusyBox v1.23.2 (2017-09-06 11:27:56 UTC) built-in shell (ash)
+
+    __ (\\_          Packet Squirrel          _//) __
+   (_ \( '.)             by Hak5             (.' )/ _)
+     ) \ _))     _                     __    ((_ / (
+    (_   )_     (') Nuts for Networks ((')    _(   _)
+
+```
+
+
+
 First i logged onto the packet squirel and did some information gathering, see the file info.txt [live squirrel](./info.txt)
 
 Then I checked out the the upgrade upgrade-1.2.bin file. The easiest way to do this is by renaming to upgrade-1.2.bin.7z

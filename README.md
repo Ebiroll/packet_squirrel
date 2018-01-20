@@ -25,10 +25,10 @@ This can be done i 3 ways.
 Here we try option 3
 
 
-# starting qemu
-qemu-system-mipsel -kernel my-openwrt-image.elf M malta \
-                     -hda openwrt-malta-le-root.ext4 \
-                     -append "root=/dev/sda console=ttyS0" \
+# starting qemu without chroot
+qemu-system-mips -kernel  -kernel openwrt-malta-be-vmlinux.elf -M malta \
+                     -hda openwrt-malta-be-root.ext4 \
+                     -append "root=/dev/sda board=HAK5-SQUIRREL console=ttyS0" \
                      -nographic
 
 
@@ -90,10 +90,11 @@ cd firmware-mod-kit
 > cp -av fmk/rootfs/* /mnt/tmp
 > sudo umount /mnt/tmp
 
+```
 file firmware-mod-kit/fmk/rootfs/sbin/init
  ELF 32-bit MSB  executable, MIPS, MIPS32 rel2 version 1, dynamically linked (uses shared libs), corrupted section header size
-../sbin/init: ELF 32-bit MSB executable, MIPS, MIPS32 rel2 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, corrupted section header size
-
+file sbin/init: ELF 32-bit MSB executable, MIPS, MIPS32 rel2 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, corrupted section header size
+```
 
 https://github.com/openwrt-stuff/firmware-mod-kit
 

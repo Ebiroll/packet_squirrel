@@ -111,8 +111,6 @@ file sbin/init: ELF 32-bit MSB executable, MIPS, MIPS32 rel2 version 1 (SYSV), d
 
 https://github.com/openwrt-stuff/firmware-mod-kit
 
-> mkdir /tmp/block2
-
 
 
 # build your own openwrt kernel, with vagrant
@@ -216,12 +214,12 @@ cd tt
 
 # Squirrel framework
 These are part of the switch/leds framework, study them
-/usr/bin/squirrel_framework
-/usr/bin/SWITCH
+    /usr/bin/squirrel_framework
+    /usr/bin/SWITCH
 
 When finished
->exit
->halt
+    exit
+    halt
 
 # Test compilation 
 

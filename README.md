@@ -55,7 +55,9 @@ Create an image that can be used in qemu,
 >mkfs.ext4 -F openwrt-malta-be-root.ext4
 >mkdir /mnt/tmp
 >mount  openwrt-malta-be-root.ext4  /mnt/tmp 
+```
 
+# Get gcc packages to install
 
 ```
 /mnt/tmp/tt

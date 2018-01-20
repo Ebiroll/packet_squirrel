@@ -98,11 +98,8 @@ file firmware-mod-kit/fmk/rootfs/sbin/init
 https://github.com/openwrt-stuff/firmware-mod-kit
 
 > mkdir /tmp/block2
-This does not work
->sudo mount -t squashfs  fmk/image_parts/rootfs.img /tmp/block2
 
 
-```
 
 # build your own openwrt kernel, with vagrant
 or use the elf file in the qemu directory.
@@ -138,6 +135,7 @@ I use version 2.11.0
 QEMU emulator version 2.11.0
 If you run the binaries in qemu and get,
 Invalid Opcode, then your version of qemu is to old.
+
 
 # Start qemu
 qemu-system-mips -M malta -kernel openwrt-malta-be-vmlinux-initramfs.elf -hda openwrt-malta-be-root.ext4 -append "console=ttyS0" -nographic

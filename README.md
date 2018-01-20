@@ -156,7 +156,7 @@ Invalid Opcode, then your version of qemu is to old.
 
 
 # Start qemu
-qemu-system-mips -M malta -kernel openwrt-malta-be-vmlinux-initramfs.elf -hda openwrt-malta-be-root.ext4 -append "console=ttyS0" -nographic
+qemu-system-mips -M malta -kernel openwrt-malta-be-vmlinux-initramfs.elf -hda openwrt-malta-be-root.ext4 -append "board=HAK5-SQUIRREL console=ttyS0" -nographic
 ```
 BusyBox v1.23.2 (2018-01-18 12:24:13 UTC) built-in shell (ash)
 
@@ -184,8 +184,6 @@ mount  /dev/sda /mnt/ps
 ```
 
 
-
-
 # Setting up chroot
 In order to run all the original binaries we dumped on a persistent fileystem.
 ```
@@ -201,7 +199,7 @@ mount -t devpts devpts $TARGETDIR/dev/pts
 
 
 # CHROOT
-chroot /mnt/ps
+    chroot /mnt/ps
 Now you should have an environment that matches the squirrel better
 
 
@@ -251,8 +249,7 @@ ip="$(cat /var/dhcp.leases | awk '{print $3}')"
 # Links
 https://astr0baby.wordpress.com/2017/11/13/packet-squirrel-hands-on/
 
-https://reverseengineering.stackexchange.com/questions/4817/dumping-firmware-thr
-ough-mtdblock-device
+https://reverseengineering.stackexchange.com/questions/4817/dumping-firmware-through-mtdblock-device
 
 
 https://web.archive.org/web/20160421212952/https://fosiao.com/content/running-openwrt-under-qemu
